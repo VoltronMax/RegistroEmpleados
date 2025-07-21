@@ -7,39 +7,42 @@ import Entidad.Empleado;
 
 public class ServicioEmpleado {
 
-    private List<Empleado> empleado;
+    private List<Empleado> listaEmpleados;
 
     public ServicioEmpleado() {
-        empleado = new ArrayList<>();
+        listaEmpleados = new ArrayList<>();
     }
 
-    public List<Empleado> agregarEmpleado(Empleado emp) {
-        empleado.add(emp);
-        return empleado;
+    public List<Empleado> agregarEmpleado(Empleado empleado) {
+        listaEmpleados.add(empleado);
+        return listaEmpleados;
     }
 
-    public List<Empleado> leerEmpleados(Empleado emplead) {
-        return empleado;
+    public List<Empleado> leerEmpleados() {
+        return listaEmpleados;
     }
 
-    public Empleado actualizarEmpleadosID(Empleado emplead, Integer id){
-        for (int i = 0; i<empleado.size(); i++){
-            if (empleado.get(i).getIdTrabajador().equals(id)) {
-                empleado.set(i, emplead);
-                return empleado.get(i);
-            }
+    // Si el id existe dentro de la lista devuelve el índice de la posición dentro de listaEmpleados
+    public Integer buscarEmpleado(Integer id){
+        for(int i=0; i<listaEmpleados.size();i++){
+            if(listaEmpleados.get(i).getIdTrabajador().equals(id)) return i;
         }
-        return actualizarEmpleadosID(emplead, id);
+        return -1;
     }
-    
 
-        public Empleado EliminarEmpleadosID(Integer id){
-        for (int i = 0; i<empleado.size(); i++){
-            if (empleado.get(i).getIdTrabajador().equals(id)) {
-                empleado.remove(i);
-                return empleado.get(i);
-            }
+    // Return actualizarEmpleadosID() provoca que el método se ejecute en bucle siempre que no exista el empleado.
+    public Empleado actualizarEmpleadosID(Empleado empleado, Integer id){
+        int indice = buscarEmpleado(id);
+        if(indice!=-1){
+            listaEmpleados.set(indice,empleado);
+            return empleado;
         }
-        return EliminarEmpleadosID(id);
+        return null;
+    }
+
+    // Return EliminarEmpleadosID() provoca que el método se ejecute en bucle siempre que no exista el empleado.
+        public void eliminarEmpleadoID(Integer id){
+        int indice = buscarEmpleado(id);
+        if(indice !=-1) listaEmpleados.remove(indice);
     }
 }
