@@ -16,7 +16,7 @@ public class Tecnico extends Empleado implements Reportable {
     }
 
     @Override
-    void trabajar() {
+    public void trabajar() {
         System.out.println(getNombre() + " está realizando tareas técnicas en su especialidad: " + areaEspecialidad);
     }
 

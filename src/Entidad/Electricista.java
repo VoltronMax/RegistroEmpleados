@@ -21,7 +21,7 @@ public class Electricista extends Empleado implements Reportable {
     }
 
     @Override
-    void trabajar() {
+    public void trabajar() {
         System.out.println("El electricista " + getNombre() + " atiende al llamado");
     }
     

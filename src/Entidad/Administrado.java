@@ -22,7 +22,7 @@ public class Administrado extends Empleado implements Reportable{
     }
 
     @Override
-    void trabajar() {
+    public void trabajar() {
         System.out.println(getNombre() + "Esta gestionando recursos");
     }
 
